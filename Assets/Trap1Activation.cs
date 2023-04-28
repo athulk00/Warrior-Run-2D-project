@@ -21,8 +21,8 @@ public class Trap1Activation : MonoBehaviour
         {
 
             trapRb.isKinematic = false;
-            flag = true; 
-
+            flag = true;
+            Destroy(trap, 3f);
             
             
         }

@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             currentRayPos = rayPos2;
         }
         RaycastHit2D hit = Physics2D.Raycast(currentRayPos.position, currentRayPos.forward, 2f);
-        if(hit.collider != null)
+        if(hit.collider != null && hit.collider.tag != "Apple")
         {
             hit.collider.gameObject.GetComponent<PlayerTarget>().TakeDamageEnemy(damage);
         }

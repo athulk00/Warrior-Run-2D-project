@@ -10,6 +10,7 @@ public class EnemyTarget : MonoBehaviour
     private PlayerMovement playerMovement;
     public Collider2D coll;
     public Rigidbody2D rb;
+    public PlayerHealthbar healthbar;
     void Start()
     {
         playerCurrentHealth = playerHealth;
@@ -17,6 +18,13 @@ public class EnemyTarget : MonoBehaviour
         //playerMovement = GetComponent<PlayerMovement>();
         //coll = GetComponent<Collider2D>();
         //rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        healthbar.SetMaxHealth(playerHealth);
+        healthbar.SetHealth(playerCurrentHealth);
+
     }
 
     public void TakeDamage(float amount)

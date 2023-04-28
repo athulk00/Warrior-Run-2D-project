@@ -8,27 +8,60 @@ public class PlayerTarget : MonoBehaviour
     public float currentHealth;
     private Animator anim;
     private EnemyMovement enemyMovement;
+    public GameObject apple;
+    private Vector3 enemyPosition;
+    private bool flag = false;
     void Start()
     {
         currentHealth = enemyHealth;
+        enemyPosition = transform.position;
         anim = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
+    }
+    private void Update()
+    {
+        
     }
     public void TakeDamageEnemy(float amount)
     {
         currentHealth -= amount;
         if(currentHealth <= 0)
         {
-            Debug.Log("Enemy Die");
+            
             EnemyDie();
+            
+
         }
     }
 
     public void EnemyDie()
     {
+
         anim.SetTrigger("Death");
         enemyMovement.enabled = false;
-        Destroy(gameObject, 1f);
+        Invoke(nameof(DestroyEnenemy), 1f);
+        Invoke(nameof(SpawnApple),1f);
+        
+        
+
+
+
+
+    }
+    public void DestroyEnenemy()
+    {
+        
+        gameObject.SetActive(false);
+    }
+    public void SpawnApple()
+    {
+        if (flag == false)
+        {
+            Instantiate(apple, transform.position, Quaternion.identity);
+        }
+        flag = true;
     }
     
+
+
 }
