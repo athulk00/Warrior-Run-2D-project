@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTarget : MonoBehaviour
 {
-    public float playerHealth = 10f;
+    public float playerHealth = 100f;
     public float playerCurrentHealth;
     public Animator anim;
     private PlayerMovement playerMovement;

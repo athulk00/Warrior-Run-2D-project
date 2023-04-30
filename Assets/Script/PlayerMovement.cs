@@ -13,9 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform rayPos2;
     private Transform currentRayPos;
     private float damage = 10f;
+    private bool previoslyAttacked;
+    private float timeBtwnAttack = 2f;
 
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] public float jumpForce = 14f;
     [SerializeField] LayerMask groundMask;
 
    
@@ -100,10 +102,21 @@ public class PlayerMovement : MonoBehaviour
         {
             currentRayPos = rayPos2;
         }
-        RaycastHit2D hit = Physics2D.Raycast(currentRayPos.position, currentRayPos.forward, 2f);
-        if(hit.collider != null && hit.collider.tag != "Apple")
+        if (!previoslyAttacked)
         {
-            hit.collider.gameObject.GetComponent<PlayerTarget>().TakeDamageEnemy(damage);
+            RaycastHit2D hit = Physics2D.Raycast(currentRayPos.position, currentRayPos.forward, 2f);
+            if (hit.collider != null && hit.collider.tag != "Apple")
+            {
+                hit.collider.gameObject.GetComponent<PlayerTarget>().TakeDamageEnemy(damage);
+            }
+            previoslyAttacked = true;
         }
+        Invoke(nameof(ActivateAttack), timeBtwnAttack);
+       
+    }
+
+    public void ActivateAttack()
+    {
+        previoslyAttacked = false;
     }
 }
