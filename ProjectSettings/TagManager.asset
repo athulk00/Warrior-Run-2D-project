@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Apple
+  - Ladder
+  - Spring
+  - Bridge
   layers:
   - Default
   - TransparentFX
