@@ -122,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if (!previouslyAttacked)
         {
-            RaycastHit2D hit = Physics2D.Raycast(currentRayPoint.position, currentRayPoint.forward, 2f);
+            RaycastHit2D hit = Physics2D.Raycast(currentRayPoint.position, currentRayPoint.forward, 2f, playerMask);
             if (hit.collider != null)
             {
                 hit.collider.gameObject.GetComponent<EnemyTarget>().TakeDamage(damage);

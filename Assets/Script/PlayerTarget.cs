@@ -50,8 +50,9 @@ public class PlayerTarget : MonoBehaviour
     }
     public void DestroyEnenemy()
     {
-        
-        gameObject.SetActive(false);
+
+        // gameObject.SetActive(false);
+        Destroy(gameObject);
     }
     public void SpawnApple()
     {

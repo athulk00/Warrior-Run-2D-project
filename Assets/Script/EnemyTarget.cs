@@ -11,6 +11,7 @@ public class EnemyTarget : MonoBehaviour
     public Collider2D coll;
     public Rigidbody2D rb;
     public PlayerHealthbar healthbar;
+    public GameObject gameOverMenu;
     void Start()
     {
         playerCurrentHealth = playerHealth;
@@ -44,6 +45,12 @@ public class EnemyTarget : MonoBehaviour
         anim.SetTrigger("Death");
         rb.isKinematic = true;
         Destroy(coll);
+        StartCoroutine(GameOverMenu());
         
+    }
+    IEnumerator GameOverMenu()
+    {
+        yield return new WaitForSeconds(2f);
+        gameOverMenu.SetActive(true);
     }
 }

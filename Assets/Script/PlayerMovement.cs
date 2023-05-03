@@ -19,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] public float jumpForce = 14f;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask enemyMask;
 
-   
-    
+
+
+
     public enum MovementState { idle, run, jump, fall, attack1, attack2, hit}
     public MovementState state;
     void Start()
@@ -104,8 +106,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!previoslyAttacked)
         {
-            RaycastHit2D hit = Physics2D.Raycast(currentRayPos.position, currentRayPos.forward, 2f);
-            if (hit.collider != null && hit.collider.tag != "Apple")
+            RaycastHit2D hit = Physics2D.Raycast(currentRayPos.position, currentRayPos.forward, 2f, enemyMask);
+            if (hit.collider != null)
             {
                 hit.collider.gameObject.GetComponent<PlayerTarget>().TakeDamageEnemy(damage);
             }
